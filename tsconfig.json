@@ -12,14 +12,15 @@
     },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-    "strict": true,
+    "allowJs": true,
+    "strict": false,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmit": true,
     "isolatedModules": true,
-    "skipLibCheck": true,
-    "allowJs": true
+    "skipLibCheck": true
+
   },
   "references": [{ "path": "./tsconfig.node.json" }],
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]

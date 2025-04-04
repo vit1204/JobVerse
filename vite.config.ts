@@ -18,7 +18,6 @@ export default defineConfig({
   },
   plugins: [
     Vue(),
-    VueJsx(),
     Layouts({
       layoutsDirs: './src/layouts',
       pagesDirs: './src/pages',

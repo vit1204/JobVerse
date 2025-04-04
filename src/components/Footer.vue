@@ -165,7 +165,6 @@ const FOOTER_API = [
           at
         </span>
 
-
         <a href="/" :class="[$style.footerTradeMarkLink, $style.footerTradeMarkTitle]">UIUC</a>
       </div>
     </div>
@@ -174,7 +173,7 @@ const FOOTER_API = [
 
 <style lang="scss" module>
     .footerWrapper {
-      background-color: var(--color-background-secondary);
+      background-color: var(--color-gray-dark);
        width: 100%;
        margin-left: 80px;
     }
@@ -271,7 +270,6 @@ const FOOTER_API = [
       background: rgba(0, 0, 0, 0.87);
       border-radius: 50%;
     }
-
 
     .footerTradeMarkImage {
       width: 18px;
