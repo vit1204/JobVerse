@@ -23,13 +23,14 @@
 
 <style lang="scss" module>
 .header {
-  position: fixed;
+
   top: 0;
   left: 0;
   width: 100%;
   background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 100;
+  height: 60px;
 
   span {
     display: flex;
@@ -77,8 +78,8 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    color: var(--color-primary);
-    font-weight: 500;
+    color: var(--color-gray);
+    font-weight: 400;
     transition: color 0.2s ease;
 
     &:hover {

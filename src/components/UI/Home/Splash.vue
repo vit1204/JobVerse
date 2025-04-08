@@ -1,25 +1,23 @@
 <script setup lang="ts">
-// Component logic here if needed
+import logo from '@/assets/img/headerImage.png'
 </script>
 
 <template>
   <div class="hero">
     <div class="content">
       <h1 class="title">
-        Build confidence. Get
-        <br>
-        the job.
+        Your future starts here. Your success begins with us.
       </h1>
       <p class="subtitle">
-        Explore careers and prepare for the job with hundreds of free job
-        simulations designed by the world's top employers.
+        Unleash your potential and explore career paths through immersive job simulations. Build essential skills and
+        gain real-world insights to prepare for your dream major.
       </p>
       <button class="button">
         Get Started →
       </button>
     </div>
     <div class="illustration">
-      <img id="logo" src="../../assets/img/headerImage.png" alt="" srcset="">
+      <img id="logo" :src="logo" alt="" srcset="">
     </div>
   </div>
 </template>
@@ -37,11 +35,11 @@
 
 .content {
   flex: 1;
-  max-width: 600px;
+  max-width: 700px;
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 44.0px;
   line-height: 1.2;
   margin-bottom: 1.5rem;
   color: var(--color-primary);
@@ -82,6 +80,7 @@
   align-items: center;
   max-width: 500px;
 }
+
 @media (max-width: 1024px) {
   .hero {
     padding: 3rem 2rem;

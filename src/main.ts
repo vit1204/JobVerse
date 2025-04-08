@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import ElementPlus from 'element-plus'
 
 import Root from './Root.vue'
 import router from './router'
@@ -10,6 +11,7 @@ import 'swiper/css/bundle'
 
 const app = createApp(Root)
 app.use(router)
+app.use(ElementPlus)
 for (const [key, component] of Object.entries(ElementPlusIconsVue))
   app.component(key, component)
 

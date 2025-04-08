@@ -7,7 +7,6 @@ import Header from '@/components/layout/Header.vue'
   <Header />
 
   <RouterView />
-  <!-- <Footer /> -->
 </template>
 
 <style lang="scss" module>
