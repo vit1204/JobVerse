@@ -1,4 +1,5 @@
 <script setup>
+import Viruss from '@/assets/img/Viruss.jpeg'
 // No additional script needed for this component
 </script>
 
@@ -44,7 +45,7 @@
       </div>
     </div>
     <img
-      width="900" style="object-fit: contain;" src="../../assets/img/Viruss.jpeg" alt="" srcset=""
+      width="900" style="object-fit: contain;" :src="Viruss" alt="" srcset=""
     >
   </div>
 </template>

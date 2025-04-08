@@ -78,7 +78,7 @@ const testimonials = [
           <div class="card-back">
             <div class="quote-container">
               <div class="quote-icon">
-                <img src="../../assets/icons/Quote.svg" alt="" srcset="">
+                <!-- <img src="../../assets/icons/Quote.svg" alt="" srcset=""> -->
               </div>
               <p class="quote">
                 {{ testimonial.quote }}
