@@ -64,6 +64,7 @@
                 }
 }
 .banner-container {
+    height: 100%;
     display: flex;
     background-color: #edf4ff;
     padding: 4rem 5rem;

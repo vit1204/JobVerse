@@ -2,18 +2,25 @@
   <header :class="$style.header">
     <ul>
       <li>
-        <img
-          src="../../assets/img/logo.png"
-          style="width: 100px;height: 50px;object-fit: contain;margin-left:30px;" alt=""
-        >
+        <img src="../../assets/img/logo.png" style="width: 100px;height: 50px;object-fit: contain;margin-left:30px;"
+          alt="">
       </li>
 
       <li>
-        <a href="">Challenge</a>
+        <a href="">Blogs</a>
       </li>
       <li>
-        <a href="">Contact Us</a>
+        <a href="">Courses</a>
       </li>
+        <li>
+          <a href="">Simulations</a>
+        </li>
+
+
+      <li>
+        <a href="">Solutions</a>
+      </li>
+
       <li>
         <a href="">About Us</a>
       </li>
@@ -23,7 +30,7 @@
 
 <style lang="scss" module>
 .header {
-
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

@@ -8,6 +8,8 @@ import 'element-plus/dist/index.css'
 import './assets/scss/main.scss'
 import 'swiper/css'
 import 'swiper/css/bundle'
+import "driver.js/dist/driver.css";
+
 
 const app = createApp(Root)
 app.use(router)

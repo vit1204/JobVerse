@@ -3,11 +3,18 @@ import { computed, onMounted, ref } from 'vue'
 import { ArrowUpRight, Briefcase, Building, Clock, Code, Scale, Users } from 'lucide-vue-next'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { A11y, Navigation, Pagination } from 'swiper/modules'
+import Banker from '@/assets/img/banker.jpg'
+import Dev from '@/assets/img/dev.jpeg'
+import Lawyer from '@/assets/img/lawyer.jpg'
+import Marketing from '@/assets/img/marketer.jpg'
+import Writer from '@/assets/img/writer.png'
+import { useRouter } from 'vue-router'
 
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+const router = useRouter()
 
 // Function to get the appropriate icon based on tag type
 function getTagIcon(type) {
@@ -69,8 +76,8 @@ const jobs = ref([
   {
     company: 'HSBC',
     title: 'Global Banking & Markets',
-    image: 'https://placehold.co/600x400/cc3232/ffffff',
-    logo: 'https://placehold.co/200x100/ffffff/cc3232?text=HSBC',
+    image: Banker,
+    logo: 'https://placehold.co/200x100/ffffff/cc3232?text=Banker',
     tags: [
       { type: 'banking', label: 'Banking & Financial Services' },
     ],
@@ -82,8 +89,8 @@ const jobs = ref([
   {
     company: 'Goldman Sachs',
     title: 'Operations',
-    image: 'https://placehold.co/600x400/e6d7a8/ffffff',
-    logo: 'https://placehold.co/200x100/ffffff/000000?text=Goldman+Sachs',
+    image: Marketing,
+    logo: 'https://placehold.co/200x100/ffffff/000000?text=Marketing',
     tags: [
       { type: 'banking', label: 'Banking & Financial Services' },
     ],
@@ -95,8 +102,8 @@ const jobs = ref([
   {
     company: 'Orrick USA',
     title: 'Commercial Law',
-    image: 'https://placehold.co/600x400/6b4c9a/ffffff',
-    logo: 'https://placehold.co/200x100/ffffff/6b4c9a?text=Orrick',
+    image: Lawyer,
+    logo: 'https://placehold.co/200x100/ffffff/6b4c9a?text=Lawyer',
     tags: [
       { type: 'law', label: 'Law' },
     ],
@@ -108,8 +115,8 @@ const jobs = ref([
   {
     company: 'Electronic Arts',
     title: 'Software Engineering',
-    image: 'https://placehold.co/600x400/2196f3/ffffff',
-    logo: 'https://placehold.co/200x100/ffffff/2196f3?text=EA',
+    image: Dev,
+    logo: 'https://placehold.co/200x100/ffffff/2196f3?text=Developer',
     tags: [
       { type: 'software', label: 'Software Engineering' },
     ],
@@ -121,8 +128,8 @@ const jobs = ref([
   {
     company: 'Bloomberg',
     title: 'Client Service',
-    image: 'https://placehold.co/600x400/f5f5f5/000000',
-    logo: 'https://placehold.co/200x100/ffffff/000000?text=Bloomberg',
+    image: Writer,
+    logo: 'https://placehold.co/200x100/ffffff/000000?text=Writer',
     tags: [
       { type: 'client', label: 'Client Service' },
     ],
@@ -141,7 +148,7 @@ const jobs = ref([
       :navigation="true" :pagination="{ clickable: true }" :breakpoints="swiperBreakpoints" class="talent-swiper"
     >
       <SwiperSlide v-for="(job, index) in jobs" :key="index">
-        <div class="job-card">
+        <div style="cursor: pointer;" @click="router.push('/Simulation')" class="job-card">
           <div class="card-banner">
             TALENT NETWORK OPEN
           </div>

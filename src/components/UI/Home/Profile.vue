@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Viruss from '@/assets/img/Phao.jpg'
 import Ngockem from '@/assets/img/Ngockem.jpg'
+import BanNam from '@/assets/img/QuocHan.jpg'
 
 // Set activeIndex to null initially (no card is active)
 const activeIndex = ref(null)
@@ -12,7 +13,7 @@ const testimonials = [
     university: 'University of Melbourne (Australia)',
     package: 'Marketing Executive',
     quote: 'I used to feel lost about my future career because I didn\'t know what jobs were really like. Then I tried the \'Marketing Executive\' package on your Jobverse. I learn how to plan a campaign and analyze customer feedback was so eye-opening! It sharpened my problem-solving skills and sparked my passion for marketing. Thanks to that, I confidently applied for Business and got accepted!',
-    image: Viruss,
+    image: BanNam,
     universityLogo: 'https://placehold.co/60x60/003366/ffffff?text=UoM',
   },
   {

@@ -3,8 +3,11 @@ import { nextTick, ref, watch } from 'vue'
 import { ElIcon, ElMessage } from 'element-plus'
 import { Document, Message, UploadFilled } from '@element-plus/icons-vue'
 import { ArrowLeft } from 'lucide-vue-next'
+import { useRouter } from 'vue-router'
 import { postChatbot, uploadFilePdf } from '@/api/chatbot'
-
+import Manager from '@/assets/img/Manager.png'
+import You from '@/assets/img/You.png'
+import Leader from '@/assets/img/Leader.png'
 // Replace with your actual API URL
 
 const props = defineProps({
@@ -13,8 +16,7 @@ const props = defineProps({
     default: false,
   },
 })
-const emit = defineEmits(['update:visible', 'close', 'navigateToDesktop'])
-
+const emit = defineEmits(['update:visible', 'close', 'navigate-to-desktop'])
 const dialogVisible = ref(props.visible)
 const userInput = ref('')
 const messages = ref([
@@ -24,11 +26,53 @@ const messages = ref([
     timestamp: new Date(),
   },
 ])
+
+// User-specific chat history
+const brianMessages = ref([
+  {
+    role: 'user',
+    content: 'Hi Lily, I need you to analyze the quarterly financial report by Friday.',
+    timestamp: new Date(new Date().setHours(new Date().getHours() - 3)),
+  },
+  {
+    role: 'assistant',
+    content: 'I\'ll work on that, Brian.Do you have any specific areas you want me to focus on?',
+    timestamp: new Date(new Date().setHours(new Date().getHours() - 3)),
+  },
+  {
+    role: 'user',
+    content: 'Please focus on the cost optimization and revenue growth sections.',
+    timestamp: new Date(new Date().setHours(new Date().getHours() - 2)),
+  },
+])
+
+const annaMessages = ref([
+  {
+    role: 'user',
+    content: 'Lily, have you seen the new budget proposal?',
+    timestamp: new Date(new Date().setHours(new Date().getHours() - 5)),
+  },
+  {
+    role: 'assistant',
+    content: 'Yes, Anna. I\'\'ve reviewed it and have some suggestions regarding the Q3 allocation.',
+    timestamp: new Date(new Date().setHours(new Date().getHours() - 5)),
+  },
+])
+
+const bertMessages = ref([
+  {
+    role: 'user',
+    content: 'Could you help me with the variance analysis for the last quarter?',
+    timestamp: new Date(new Date().setHours(new Date().getHours() - 8)),
+  },
+])
+
 const loading = ref(false)
 const showUpload = ref(false)
 const selectedFile = ref(null)
 const uploading = ref(false)
 const messagesContainer = ref(null)
+const activeContact = ref('assistant') // Default to AI Assistant
 
 // Watch for changes in the visible prop
 watch(
@@ -53,6 +97,32 @@ watch(
   },
   { deep: true },
 )
+
+// Watch for active contact change
+watch(activeContact, (newContact) => {
+  // Switch message history based on selected contact
+  switch (newContact) {
+    case 'brian':
+      messages.value = [...brianMessages.value]
+      break
+    case 'anna':
+      messages.value = [...annaMessages.value]
+      break
+    case 'bert':
+      messages.value = [...bertMessages.value]
+      break
+    default:
+      // Default AI Assistant messages
+      messages.value = [
+        {
+          role: 'assistant',
+          content: 'Hello! I\'m your financial assistant. How can I help you today?',
+          timestamp: new Date(),
+        },
+      ]
+  }
+  scrollToBottom()
+})
 
 async function scrollToBottom() {
   await nextTick()
@@ -80,14 +150,32 @@ async function sendMessage() {
   userInput.value = ''
   loading.value = true
 
+  // Save message to the appropriate chat history
+  if (activeContact.value === 'brian')
+    brianMessages.value.push(userMessage)
+  else if (activeContact.value === 'anna')
+    annaMessages.value.push(userMessage)
+  else if (activeContact.value === 'bert')
+    bertMessages.value.push(userMessage)
+
   try {
     const response = await postChatbot(messageText)
 
-    messages.value.push({
+    const assistantMessage = {
       role: 'assistant',
       content: response || 'I processed your request.',
       timestamp: new Date(),
-    })
+    }
+
+    messages.value.push(assistantMessage)
+
+    // Save assistant message to the appropriate chat history
+    if (activeContact.value === 'brian')
+      brianMessages.value.push(assistantMessage)
+    else if (activeContact.value === 'anna')
+      annaMessages.value.push(assistantMessage)
+    else if (activeContact.value === 'bert')
+      bertMessages.value.push(assistantMessage)
   }
   catch (error) {
     console.error('Error sending message:', error)
@@ -154,19 +242,20 @@ async function uploadPdf() {
     uploading.value = false
   }
 }
+
+function switchContact(contact) {
+  activeContact.value = contact
+}
 </script>
 
 <template>
   <div v-show="visible" class="chat-interface">
     <div class="chat-header">
       <div class="contact-info">
-        <div class="avatar" />
-        <div class="contact-details">
-          <ElIcon @click="navigateToDesktop">
-            <ArrowLeft />
-          </ElIcon>
-          <h2>AI Assistant</h2>
-        </div>
+        <ElIcon style="cursor: pointer;" @click="emit('navigate-to-desktop')">
+          <ArrowLeft />
+        </ElIcon>
+       
       </div>
     </div>
 
@@ -177,32 +266,31 @@ async function uploadPdf() {
         </div>
 
         <div class="contacts-list">
-          <div class="contact active">
-            <div class="contact-avatar" />
-            <div class="contact-name">
-              <h4>AI Assistant</h4>
-              <p>Financial Analyst Bot</p>
+      
+          <div class="contact" :class="{ active: activeContact === 'brian' }" @click="switchContact('brian')">
+            <div class="contact-avatar" >
+              <img :src="Leader" alt="Leader" />
             </div>
-          </div>
-
-          <div class="contact">
-            <div class="contact-avatar" />
             <div class="contact-name">
               <h4>Brian - Team Leader</h4>
               <p>Financial Team</p>
             </div>
           </div>
 
-          <div class="contact">
-            <div class="contact-avatar" />
+          <div class="contact" :class="{ active: activeContact === 'anna' }" @click="switchContact('anna')">
+            <div class="contact-avatar" >
+              <img :src="Manager" alt="Manager" />
+            </div>
             <div class="contact-name">
               <h4>Anna - Manager</h4>
               <p>Financial Department</p>
             </div>
           </div>
 
-          <div class="contact">
-            <div class="contact-avatar" />
+          <div class="contact" :class="{ active: activeContact === 'bert' }" @click="switchContact('bert')">
+            <div class="contact-avatar" >
+              <img :src="You" alt="You" />
+            </div>
             <div class="contact-name">
               <h4>Bert - Colleague</h4>
               <p>Financial Analyst</p>
@@ -283,8 +371,9 @@ async function uploadPdf() {
 
             <div class="message-input">
               <el-input
-                v-model="userInput" placeholder="Text to AI Assistant" :disabled="loading"
-                @keyup.enter="sendMessage"
+                v-model="userInput"
+                :placeholder="`Text to ${activeContact === 'brian' ? 'Brian' : activeContact === 'anna' ? 'Anna' : activeContact === 'bert' ? 'Bert' : 'AI Assistant'}`"
+                :disabled="loading" @keyup.enter="sendMessage"
               />
             </div>
 
@@ -386,6 +475,7 @@ async function uploadPdf() {
   cursor: pointer;
   border-bottom: 1px solid #e0e0e0;
   transition: background-color 0.2s;
+  position: relative;
 }
 
 .contact:hover {
@@ -411,6 +501,10 @@ async function uploadPdf() {
   object-fit: cover;
 }
 
+.contact-name {
+  flex: 1;
+}
+
 .contact-name h4 {
   margin: 0;
   font-size: 14px;
@@ -421,6 +515,18 @@ async function uploadPdf() {
   margin: 4px 0 0;
   font-size: 12px;
   color: #666;
+}
+
+.unread-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #1a237e;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .messages-area {

@@ -79,12 +79,9 @@ function getRiskTagType(level) {
           <div class="trend-analysis">
             <div class="trend-chart">
               <h4>Revenue Growth Trend (2020-2024)</h4>
-              <ElProgress
-                v-for="(year, index) in years" :key="index" :percentage="revenueData[index]"
-                color="#4cd3a5" :stroke-width="20"
-                :format="() => `${year}: $${(revenueData[index] * 10).toFixed(1)}M`"
-                class="revenue-bar"
-              />
+              <ElProgress v-for="(year, index) in years" :key="index" :percentage="revenueData[index]" color="#4cd3a5"
+                :stroke-width="20" :format="() => `${year}: $${(revenueData[index] * 10).toFixed(1)}M`"
+                class="revenue-bar" />
             </div>
 
             <div class="risk-assessment">
@@ -106,7 +103,13 @@ function getRiskTagType(level) {
         </div>
       </ElCard>
     </div>
+    <RouterLink to="/ChartResult">
+      <button>
+        Next
+      </button>
+    </RouterLink>
   </div>
+
 </template>
 
 <style scoped>
@@ -123,6 +126,22 @@ function getRiskTagType(level) {
     color: #fff;
     font-size: 18px;
     text-align: center;
+}
+button {
+  background-color: var(--color-secondary);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  float: right;
+
 }
 
 .section-title {

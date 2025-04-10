@@ -126,6 +126,12 @@ const activeName = ref('overview')
   </div>
 </template>
 
+<route lang="yaml">
+ meta:
+  layout: auth
+</route>
+
+
 <style lang="scss" scoped>
 /* Full width header styles */
 .header-section-wrapper {
@@ -239,7 +245,7 @@ const activeName = ref('overview')
 
   h2 {
     font-size: 24px;
-    color: var(--color-secondary);
+    color: #2e7d6e;
     margin-bottom: 20px;
     font-weight: 600;
   }

@@ -117,6 +117,7 @@ onMounted(() => {
 <style>
 .scroll-container {
   overflow-x: hidden;
+  overflow-y: hidden;
   /* Prevent horizontal scrolling from animations */
 }
 

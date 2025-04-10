@@ -8,10 +8,12 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AboutUs: typeof import('./src/components/UI/TabContents/AboutUs.vue')['default']
+    AchieveSection: typeof import('./src/components/UI/Chart/AchieveSection.vue')['default']
     Chatbot: typeof import('./src/components/UI/Simulation/Chatbot.vue')['default']
     ChatMessage: typeof import('./src/components/ChatMessage.vue')['default']
     CompanyTab: typeof import('./src/components/UI/Simulation/tabs/CompanyTab.vue')['default']
     Course: typeof import('./src/components/UI/Home/Course.vue')['default']
+    DashHeader: typeof import('./src/components/UI/Chart/DashHeader.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
@@ -22,6 +24,7 @@ declare module 'vue' {
     Header: typeof import('./src/components/layout/Header.vue')['default']
     IntroductionCotent: typeof import('./src/components/UI/Simulation/IntroductionCotent.vue')['default']
     MarketTab: typeof import('./src/components/UI/Simulation/tabs/MarketTab.vue')['default']
+    NavigationBar: typeof import('./src/components/UI/Chart/NavigationBar.vue')['default']
     Overview: typeof import('./src/components/UI/TabContents/Overview.vue')['default']
     Profile: typeof import('./src/components/UI/Home/Profile.vue')['default']
     Reviews: typeof import('./src/components/UI/TabContents/Reviews.vue')['default']
@@ -33,6 +36,7 @@ declare module 'vue' {
     Something: typeof import('./src/components/UI/Home/Something.vue')['default']
     Splash: typeof import('./src/components/UI/Home/Splash.vue')['default']
     Step: typeof import('./src/components/UI/Home/Step.vue')['default']
+    TalentNetwork: typeof import('./src/components/UI/Chart/TalentNetwork.vue')['default']
     Task1Content: typeof import('./src/components/UI/Simulation/tasks/Task1Content.vue')['default']
     Task2Content: typeof import('./src/components/UI/Simulation/tasks/Task2Content.vue')['default']
     Task3Content: typeof import('./src/components/UI/Simulation/tasks/Task3Content.vue')['default']

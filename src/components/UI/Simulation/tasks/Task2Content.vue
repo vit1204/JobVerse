@@ -1,5 +1,8 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import 'driver.js/dist/driver.css'
+
+import { driver } from 'driver.js'
 import {
   ArrowLeft,
   Box,
@@ -28,6 +31,71 @@ const showAnnotation = ref(false)
 const showPopupMenu = ref(false)
 const showChatbot = ref(false)
 const currentView = ref('desktop') // 'desktop' or 'chatbot'
+
+// Initialize driver.js
+const driverObj = driver({
+  animate: true,
+  opacity: 0.75,
+  padding: 10,
+  allowClose: true,
+  overlayClickNext: false,
+  doneBtnText: 'Finish',
+  closeBtnText: 'Skip',
+  nextBtnText: 'Next',
+  prevBtnText: 'Previous',
+  stageBackground: '#ffffff',
+  showProgress: true,
+  steps: [
+    {
+      element: '.popup-trigger',
+      popover: {
+        title: 'Add New Items',
+        description: 'Click here to add new items to your desktop',
+        position: 'right',
+      },
+    },
+    {
+      element: '.calendar-icon',
+      popover: {
+        title: 'Calendar',
+        description: 'Access your calendar and schedule',
+        position: 'right',
+      },
+    },
+    {
+      element: '.settings-icon',
+      popover: {
+        title: 'Settings',
+        description: 'Access settings and chatbot interface',
+        position: 'right',
+      },
+    },
+    {
+      element: '.folder-icon',
+      popover: {
+        title: 'Documents',
+        description: 'Access your documents and files',
+        position: 'right',
+      },
+    },
+    {
+      element: '.chat-bubble',
+      popover: {
+        title: 'Team Communication',
+        description: 'Check your team messages and updates',
+        position: 'left',
+      },
+    },
+    {
+      element: '.search-bar',
+      popover: {
+        title: 'Navigation Bar',
+        description: 'Access home, search, and system information',
+        position: 'top',
+      },
+    },
+  ],
+})
 
 // Selected icons for the popup menu
 const popupIcons = [
@@ -64,6 +132,7 @@ function navigateToDesktop() {
   showChatbot.value = false
 }
 
+
 onMounted(() => {
   // Show annotation with delay
   setTimeout(() => {
@@ -74,6 +143,11 @@ onMounted(() => {
   setTimeout(() => {
     showChatBubble.value = true
   }, 3000)
+
+  // Start the tour after a short delay
+  setTimeout(() => {
+    driverObj.drive()
+  }, 1000)
 })
 </script>
 
@@ -163,6 +237,16 @@ onMounted(() => {
               </p>
             </div>
           </div>
+          <!-- Add close button -->
+          <div class="email-close" @click="toggleEmail">
+            <svg
+              xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </div>
         </div>
 
         <div class="email-body">
@@ -216,7 +300,7 @@ onMounted(() => {
             </ElIcon>
           </ElButton>
           <div class="search-bar">
-            <ElInput placeholder="Search..." prefix-icon="search" />
+            <ElInput class="search-input" placeholder="Search..." prefix-icon="search" />
           </div>
         </div>
 
@@ -519,11 +603,30 @@ onMounted(() => {
     transform: translateX(-50%) translateY(0);
   }
 }
-
 .email-header {
   padding: 16px;
   border-bottom: 1px solid #e0e0e0;
   background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #555;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.email-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .sender-info {

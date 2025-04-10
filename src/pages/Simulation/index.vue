@@ -5,9 +5,12 @@ import 'element-plus/dist/index.css'
 import SidebarMenu from '@/components/UI/Simulation/SidebarMenu.vue'
 import IntroductionContent from '@/components/UI/Simulation/IntroductionCotent.vue'
 import TaskContent from '@/components/UI/Simulation/TaskContent.vue'
+import {driver} from "driver.js"
+import { onMounted } from 'vue'
 
 const activeTask = ref('intro')
 const activeSubTask = ref('company')
+
 
 function setActiveTask(task) {
   activeTask.value = task
@@ -27,7 +30,7 @@ function setActiveSubTask(subTask) {
       <h2 class="sidebar-title">
         Financial Analyst
       </h2>
-      <SidebarMenu
+      <SidebarMenu id="sidebar-menu"
         :active-task="activeTask" :active-sub-task="activeSubTask" @set-active-task="setActiveTask"
         @set-active-sub-task="setActiveSubTask"
       />
@@ -44,6 +47,11 @@ function setActiveSubTask(subTask) {
     </div>
   </div>
 </template>
+
+<route lang="yaml">
+ meta:
+  layout: auth
+</route>
 
 <style>
 * {

@@ -8,6 +8,7 @@ export default antfu({
     'unused-imports/no-unused-import': 'off',
     'vue/camelcase': 'off',
     'vue/custom-event-name-casing': 'off',
+    ""
 
   },
 
