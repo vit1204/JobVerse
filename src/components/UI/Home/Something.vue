@@ -44,21 +44,25 @@ import Viruss from '@/assets/img/Viruss.jpeg'
         </div>
       </div>
     </div>
-    <img
-      width="900" style="object-fit: contain;" :src="Viruss" alt="" srcset=""
-    >
+    <div>
+    <img    loading="lazy"
+      src="https://www.theforage.com/_next-marketing/_next/image?url=%2Fimages%2Fhomepage%2FImage2.jpeg&w=1080&q=75"
+      alt="" srcset="">
+      </div>
   </div>
 </template>
 
 <style scoped>
 .banner-container {
-    display: flex ;
     background-color: #1e3a70;
     color: #a3e0d0;
-    min-height: 500px;
-    width: 100%;
-    overflow: hidden;
+    
+   width:100% ;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 .content-section {
